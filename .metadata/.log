@@ -7104,3 +7104,6 @@ Caused by: org.eclipse.jgit.errors.TransportException: Nothing to fetch.
 
 !ENTRY org.eclipse.egit.ui 4 0 2025-01-21 15:36:02.640
 !MESSAGE Can't connect to any repository: 
+
+!ENTRY org.eclipse.egit.ui 4 0 2025-01-21 15:36:48.937
+!MESSAGE Can't connect to any repository: 
