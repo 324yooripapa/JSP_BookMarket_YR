@@ -1,6 +1,5 @@
 INDEX VERSION 1.4+C:\workspace_BookMarket_YR\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 4169622362.index
-1309733049.index
 259473024.index
 3559393699.index
 1561259185.index
