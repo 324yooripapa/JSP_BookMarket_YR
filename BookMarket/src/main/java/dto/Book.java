@@ -28,11 +28,11 @@ public class Book implements Serializable{
 		this.unitPrice=unitPrice;
 	}
 
-	public String getBookid() {
+	public String getBookId() {
 		return bookid;
 	}
 
-	public void setBookid(String bookid) {
+	public void setBookId(String bookid) {
 		this.bookid = bookid;
 	}
 
