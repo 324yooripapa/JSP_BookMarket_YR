@@ -21,6 +21,13 @@
 	<%
 		BookRepository dao=BookRepository.getInstance();
 		ArrayList<Book> listOfBooks=bookDAO.getAllBooks();
+		
+		for (int i=0; i<listOfBooks.size(); i++){
+			Book book = listOfBooks.get(i);
+			System.out.println("books.jsp에서 생성된 책 정보 -ID: " +book.getBookId() + ", 이름: " + book.getName());
+	%>
+	<%
+		}
 	%>
 <div class="row align-items-md-stretch  text-center">
 	<%
@@ -36,7 +43,7 @@
 		 	<p><%=book.getDescription().substring(0,60) %>...
 		 	<p><%=book.getUnitPrice() %>원
 		 	<p><a href="./book.jsp?id=<%=book.getBookId() %>"
-		 	class="btn btn-secondary" role ="button"> 상세 정보 &raquo;</a>
+		 	class="btn btn-secondary" role ="button"> 상세 정보 &raquo;</a></p>
 		 </div>
 	</div>
 	<%

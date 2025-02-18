@@ -6,7 +6,7 @@ import dto.Book;
 public class BookRepository {
 
 	
-	private ArrayList<Book> listOfBooks=new ArrayList<Book>();
+	private static ArrayList<Book> listOfBooks=new ArrayList<Book>();
 	private static BookRepository instance = new BookRepository();
 	
 	public static BookRepository getInstance() {
@@ -43,19 +43,32 @@ public class BookRepository {
 		listOfBooks.add(book3);
 	}
 		public ArrayList<Book> getAllBooks() {
+			System.out.println("BookRepository에서 전체 도서 목록 반환 중");
+			
+			for (Book book : listOfBooks) {
+				System.out.println("저장된 도서 ID: " + book.getBookId()+", 이름: "+book.getName());
+			}
 			return listOfBooks;
 		}
 		
-		public Book getBookById(String bookId) {
+		public Book getBookById(String id) {
+			System.out.println("BookRepository에서 검색 중: " +id);
+			
 			Book bookById=null;
 			
-			for (int i=0; i< listOfBooks.size(); i++) {
-				Book book=listOfBooks.get(i);
-				if (book!=null && book.getBookid()!=null &&
-						book.getBookid().equals(bookId)) {
-					bookById=book;
-					break;
+		
+			for (Book book : listOfBooks) {
+				System.out.println("저장된 도서 ID: " + book.getBookId());
+				if (book != null && book.getBookId()!= null &&
+						book.getBookId().equals(id)) {
+						bookById = book;
+						break;
+					
 				}
+			}
+			
+			if (bookById == null) {
+				System.out.println("해당 ID의 도서를 찾을 수 없습니다." + id);
 			}
 			return bookById;
 		}

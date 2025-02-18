@@ -6,7 +6,7 @@ public class Book implements Serializable{
 	
 	private static final long serialVersionUID=-4274700572038677000L;
 	
-	private String bookid;
+	private String id;
 	private String name;
 	private int unitPrice;
 	private String author;
@@ -22,18 +22,18 @@ public class Book implements Serializable{
 		super();
 	}
 	
-	public Book(String bookid, String name, Integer unitPrice) {
-		this.bookid=bookid;
+	public Book(String id, String name, Integer unitPrice) {
+		this.id=id;
 		this.name=name;
 		this.unitPrice=unitPrice;
 	}
 
 	public String getBookId() {
-		return bookid;
+		return id;
 	}
 
-	public void setBookId(String bookid) {
-		this.bookid = bookid;
+	public void setBookId(String id) {
+		this.id = id;
 	}
 
 	public String getName() {

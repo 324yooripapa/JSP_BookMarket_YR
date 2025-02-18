@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="dto.Book"%>
-<jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session">
+<%@ page import="dao.BookRepository" %>
 
 <html>
 <head>
@@ -19,8 +19,26 @@
 	</div>
 	
 	<%
-		String id=request.getParameter("id");
-		Book book=bookDAO.getBookById(id);
+		String id = request.getParameter("id");
+		System.out.println("전달된 도서 id : [" + id + "]");
+		
+
+		if (id == null || id.trim().isEmpty()){
+
+			System.out.println("잘못된 접근입니다. 도서 ID가 없습니다.");
+			response.sendRedirect("books.jsp");
+			return;
+		}
+	
+			BookRepository dao=BookRepository.getInstance();
+			System.out.println("BookRepository 객체 생성됨");
+			
+			Book book=dao.getBookById(id);
+			System.out.println("getBookById() 호출 완료, 결과: " + book);
+			
+			if (book==null){
+			System.out.println("해당 ID의 도서를 찾을 수 없습니다: " + id);
+			}
 	%>
 	
 	<div class="row align-items-md-stretch">
@@ -28,7 +46,7 @@
 			<h3><b><%=book.getName() %></b></h3>
 			<p><%=book.getDescription() %>
 			<p><b>도서코드 :</b><span class="badge text-bg-danger">
-			<%=book.getBookid() %></span>
+			<%=book.getBookId() %></span>
 			<p><b>저자</b>: <%=book.getAuthor() %>
 			<p><b>출판사</b>: <%=book.getPublisher() %>
 			<p><b>출판일</b>: <%=book.getReleaseDate() %>
@@ -43,4 +61,3 @@
 </div>
 </body>
 </html>
-</jsp:useBean>

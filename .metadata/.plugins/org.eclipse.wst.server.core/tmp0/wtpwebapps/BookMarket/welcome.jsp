@@ -29,10 +29,14 @@ String tagline="Welcome to Web Market!"; %>
 <%
 	response.setIntHeader("Refresh", 5);
 	Date day = new java.util.Date();
+	//현재 날짜와 시각을 얻어오기 위해 Date 클래스의 인스턴스 day를 생성함
+	
 	String am_pm;
 	int hour=day.getHours();
 	int minute=day.getMinutes();
 	int second=day.getSeconds();
+	//Date 클래스의 인스턴스 day를 통해 현재 시, 분, 초를 얻어오도록 작성함
+	
 	if (hour /12==0){
 						am_pm="AM";
 					}
@@ -40,6 +44,7 @@ String tagline="Welcome to Web Market!"; %>
 		 				am_pm="PM";
 						hour=hour -12;
 					}
+	//현재 시각이 12 이하이면 "AM"을 출력하고 12를 초과하면 "PM"을 출력함
 	
 	String CT=hour+":"+minute+":"+second+" "+am_pm;
 	out.println("현재 접속 시각: " +CT +"\n");
