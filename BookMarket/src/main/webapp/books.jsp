@@ -6,6 +6,7 @@
 <html>
 <head>
 <link href="https:cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <title>도서목록</title>
 </head>
 <body>
@@ -37,6 +38,7 @@
 	%>
 	<div class="col-md-4">
 		<div class="h-100 p-2">
+			<img src="./resources/images/<%=book.getFilename() %>" style="width :250; height:350"/>
 		 	<h5><b><%= book.getName() %></b></h5>
 		 	<p><%=book.getAuthor() %>
 		 	<br><%=book.getPublisher() %>|<%=book.getReleaseDate() %>
