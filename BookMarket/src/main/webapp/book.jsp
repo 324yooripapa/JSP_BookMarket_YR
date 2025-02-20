@@ -43,7 +43,7 @@
 	
 	<div class="row align-items-md-stretch">
 		<div class="col-md-5">
-			<img src="./resources/images/<%=book.getFilename() %> style="width:70%">
+			<img src="./resources/images/<%=book.getFilename() %>" style="width:70%">
 		</div>
 		<div class="col-md-6">
 			<h3><b><%=book.getName() %></b></h3>

@@ -2,7 +2,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dto.Book" %>
 <%@ page import="dao.BookRepository" %>
-<jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" />
 <html>
 <head>
 <link href="https:cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,14 +20,14 @@
 </div>
 	<%
 		BookRepository dao=BookRepository.getInstance();
-		ArrayList<Book> listOfBooks=bookDAO.getAllBooks();
+		ArrayList<Book> listOfBooks=dao.getAllBooks();
 		
-		for (int i=0; i<listOfBooks.size(); i++){
-			Book book = listOfBooks.get(i);
-			System.out.println("books.jsp에서 생성된 책 정보 -ID: " +book.getBookId() + ", 이름: " + book.getName());
-	%>
-	<%
-		}
+	
+		System.out.println(" books.jsp에서 getAllBooks() 실행됨. 도서 개수: " + listOfBooks.size());
+
+		    for (Book book : listOfBooks) {
+		        System.out.println("저장된 도서 정보 - ID: " + book.getBookId() + ", 이름: " + book.getName() + ", 이미지 파일: " + book.getFilename());
+		    }
 	%>
 <div class="row align-items-md-stretch  text-center">
 	<%
