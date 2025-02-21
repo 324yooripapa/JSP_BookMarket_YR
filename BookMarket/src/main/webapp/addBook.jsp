@@ -7,7 +7,7 @@
 <title>도서 등록</title>
 </head>
 <body>
-<fmt:setLocale value='<%=request.getParameter("language") %>'/>
+<fmt:setLocale value='<%=request.getParameter("language") != null ? request.getParameter("language") : "ko" %>'/>
 <fmt:bundle basename="bundle.message">
 
 <div class="container py-4">
@@ -23,6 +23,8 @@
 	<div class="row align-items-md-stretch">
 		<div class="text-end">
 			<a href="?language=ko">Korean</a> | <a href="?language=en">English</a>
+			<a href="logout.jsp" class="btn btn-sm btn-success pull right">
+			logout</a>
 		</div>
 		<form name="newBook" action="processAddBook.jsp" class="form-horizontal" method="post" onsubmit="return CheckAddBook();" enctype="multipart/form-data">
 			<div class="mb-3 row">
