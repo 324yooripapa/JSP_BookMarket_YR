@@ -9,7 +9,7 @@ function CheckAddBook(){
 	if(!check(/^ISBN[0-9]{4,11}$/, bookId, "[도서 코드]\nISBN과 숫자를 조합하여 5~12자까지 입력하세요\n첫 글자는 반드시 ISBN으로 시작하세요"))
 		return false;
 	
-	if(!name.value.length <4 || name.value.length >50){
+	if(name.value.length <4 || name.value.length >50){
 		alert("[도서명]\n최소 4자에서 최대 50자까지 입력하세요");
 		name.focus();
 		return false;
@@ -42,6 +42,6 @@ function CheckAddBook(){
 	return false;
 	}
 	
-	document.newBook.submit()
+	return true;
 	
 }

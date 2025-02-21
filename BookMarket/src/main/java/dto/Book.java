@@ -17,6 +17,7 @@ public class Book implements Serializable{
 	private String releaseDate;
 	private String condition;
 	private String filename;
+
 	
 	
 	public Book() {

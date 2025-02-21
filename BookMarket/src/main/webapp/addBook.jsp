@@ -17,11 +17,11 @@
 	</div>
 	
 	<div class="row align-items-md-stretch">
-		<form name="newBook" action=".processAddBook.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
+		<form name="newBook" action="processAddBook.jsp" class="form-horizontal" method="post" onsubmit="return CheckAddBook();" enctype="multipart/form-data">
 			<div class="mb-3 row">
 				<label class="col-sm-2">도서코드</label>
 				<div class="col-sm-3">
-					<input type="text" id="bookId" name="bookid" class="form-control">
+					<input type="text" id="id" name="id" class="form-control">
 				</div>
 			</div>
 			<div class="mb-3 row">
@@ -40,6 +40,12 @@
 				<label class="col-sm-2">저자</label>
 				<div class="col-sm-3">
 					<input type="text" name="author" class="form-control">
+				</div>
+			</div>
+			<div class="mb-3 row">
+				<label class="col-sm-2">출판사</label>
+				<div class="col-sm-3">
+					<input type="text" id="publisher" name="publisher" class="form-control">
 				</div>
 			</div>
 			<div class="mb-3 row">
@@ -83,7 +89,7 @@
 				</div>
 			<div class="mb-3 row">
 				<div class="col-sm-offset-2 col-sm-10">
-					<input type="button" class="btn btn-primary" value="등록" onclick="CheckAddBook()">
+					<input type="submit" class="btn btn-primary" value="등록">
 				</div>
 			</div>
 		</form>

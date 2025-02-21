@@ -25,9 +25,13 @@
 	
 		System.out.println(" books.jsp에서 getAllBooks() 실행됨. 도서 개수: " + listOfBooks.size());
 
+
+
 		    for (Book book : listOfBooks) {
 		        System.out.println("저장된 도서 정보 - ID: " + book.getBookId() + ", 이름: " + book.getName() + ", 이미지 파일: " + book.getFilename());
 		    }
+		    
+			
 	%>
 <div class="row align-items-md-stretch  text-center">
 	<%
@@ -48,6 +52,7 @@
 		 </div>
 	</div>
 	<%
+	System.out.println(" books.jsp에서 불러온 이미지 파일명: " + book.getFilename());
 	}
 	%>
 </div>
