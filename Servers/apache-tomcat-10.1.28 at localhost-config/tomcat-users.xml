@@ -18,7 +18,10 @@
 <tomcat-users version="1.0" >
 	<role rolename="manager-gui"/>
     <role rolename="admin-gui"/>
-    <user username="yoori" password="yoori" roles="manager-gui,admin-gui"/>
+    <role rolename="admin"/>
+    
+    <user username="admin" password="admin1234" roles="admin,manager-gui"/>
+    <user username="yoori" password="yoori" roles="manager-gui,admin-gui,admin"/>
 <!--
   By default, no user is included in the "manager-gui" role required
   to operate the "/manager/html" web application.  If you wish to use this app,
@@ -53,7 +56,7 @@
   <user username="tomcat" password="tomcat1234" roles="tomcat"/>
   <user username="both" password="both1234" roles="tomcat,role1"/>
   <user username="role1" password="role1234" roles="role1"/>
-  <user username="admin" password="admin1234" roles="admin"/>
+
 
 
 </tomcat-users>

@@ -127,6 +127,18 @@
              that are performed against this UserDatabase are immediately
              available for use by the Realm.  -->
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
+        <Realm className="org.apache.catalina.realm.DataSourceRealm"
+	    dataSourceName="jdbc/graha"
+	    userTable="users.users"
+	    userNameCol="user_name"
+	    userCredCol="user_pass"
+	    userRoleTable="users.user_roles"
+	    roleNameCol="role_name"
+	    debug="9">
+        <CredentialHandler className="org.apache.catalina.realm.MessageDigestCredentialHandler" algorithm="SHA-512"/>
+</Realm>
+        
+
       </Realm>
 
       <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="J2EE_EXPORT_OVERWRITE" value="true"/>
-	<item key="J2EE_EXPORT_SOURCE" value="true"/>
+	<item key="J2EE_EXPORT_SOURCE" value="false"/>
 	<list key="MRU_RUNTIME_STORE">
 		<item value="apache-tomcat-10.1.28"/>
 	</list>
 	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="C:\workspace_BookMarket_YR\BookMarket.war"/>
 		<item value="C:\apache-tomcat-10.1.34\webapps\ROOT\BookMarket.war"/>
 	</list>
 </section>
