@@ -6,6 +6,7 @@
 		<item value="apache-tomcat-10.1.28"/>
 	</list>
 	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="C:\apache-tomcat-10.1.34\webapps\BookMarket.war"/>
 		<item value="C:\workspace_BookMarket_YR\BookMarket.war"/>
 		<item value="C:\apache-tomcat-10.1.34\webapps\ROOT\BookMarket.war"/>
 	</list>
