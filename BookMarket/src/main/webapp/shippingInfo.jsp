@@ -6,6 +6,13 @@
 </head>
 <body>
 <div class="container py-4">
+<% 
+    String cartId = (String) session.getId();
+    if (cartId == null || cartId.trim().equals("")) {
+        response.sendRedirect("cart.jsp");
+        return;
+    }
+%>
 	<%@ include file="menu.jsp" %>
 	<div class="p-5 mb-4 bg-body-tertiary rounded-3">
 		<div class="container-fluid py-5">

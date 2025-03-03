@@ -23,7 +23,7 @@
 			Cookie thisCookie=cookies[i];
 			String n= thisCookie.getName();
 			if(n.equals("Shipping_cartId"))
-				shipping_name=URLDecoder.decode((thisCookie.getValue()), "utf-8");
+				shipping_cartId=URLDecoder.decode((thisCookie.getValue()), "utf-8");
 			if(n.equals("Shipping_name"))
 				shipping_name=URLDecoder.decode((thisCookie.getValue()), "utf-8");
 			if(n.equals("Shipping_shippingDate"))
@@ -58,7 +58,7 @@
 			<div class="col-4" align="left">
 				<strong>배송 주소</strong><br> 성명:<%out.println(shipping_name); %><br>
 				우편번호 :<%out.println(shipping_zipCode); %> <br>
-				주소 :<%out.println(shipping_addressName); %> <%out.println(shipping_country); %>)<br>
+				주소 :<%out.println(shipping_addressName); %>, <%out.println(shipping_country); %> <br>
 			</div>
 		</div>
 		<div class="col-4" align="right">
