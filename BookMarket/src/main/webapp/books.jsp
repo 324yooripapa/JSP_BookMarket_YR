@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="dto.Book" %>
-<%@ page import="dao.BookRepository" %>
+<%@ page import="java.sql.*" %>
 <html>
 <head>
 <link href="https:cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,45 +16,38 @@
 		<p class="col-md-8 fs-4">BookList</p>
 	</div>
 </div>
+<%@ include file="dbconn.jsp" %>
+<div class="row align-items-md-stretch text-center">
+<%
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	String sql="SELECT *FROM book";
+	pstmt=conn.prepareStatement(sql);
+	rs=pstmt.executeQuery();
+	while (rs.next()){
+%>
+<div class="col-md-4">
+       		<div class="h-100 p-2 round-3">		
+       		    <img src="./resources/images/<%=rs.getString("b_filename")%>" style="width: 250; height:350" />	
+				<p><h5><b><%=rs.getString("b_name")%></b></h5>
+				<p><%=rs.getString("b_author")%>
+				<br> <%=rs.getString("b_publisher")%> | <%=rs.getString("b_releaseDate")%>
+				<p> <%=rs.getString("b_description").substring(0,60)%>....
+				<p><%=rs.getString("b_unitPrice")%>원
+				<p><a href="./book.jsp?id=<%=rs.getString("b_id")%>" class="btn btn-secondary" role="button"> 상세 정보 &raquo;</a>
+			</div>	
+		</div>			
 	<%
-		BookRepository dao=BookRepository.getInstance();
-		ArrayList<Book> listOfBooks=dao.getAllBooks();
-		
-	
-		System.out.println(" books.jsp에서 getAllBooks() 실행됨. 도서 개수: " + listOfBooks.size());
-
-
-
-		    for (Book book : listOfBooks) {
-		        System.out.println("저장된 도서 정보 - ID: " + book.getBookId() + ", 이름: " + book.getName() + ", 이미지 파일: " + book.getFilename());
-		    }
-		    
-			
-	%>
-<div class="row align-items-md-stretch  text-center">
-	<%
-		for (int i=0; i<listOfBooks.size();i++){
-			Book book=listOfBooks.get(i);
-		
-	%>
-	<div class="col-md-4">
-		<div class="h-100 p-2">
-			<img src="./resources/images/<%=book.getFilename() %>" style="width :250; height:350"/>
-		 	<h5><b><%= book.getName() %></b></h5>
-		 	<p><%=book.getAuthor() %>
-		 	<br><%=book.getPublisher() %>|<%=book.getReleaseDate() %>
-		 	<p><%=book.getDescription().substring(0,60) %>...
-		 	<p><%=book.getUnitPrice() %>원
-		 	<p><a href="./book.jsp?id=<%=book.getBookId() %>"
-		 	class="btn btn-secondary" role ="button"> 상세 정보 &raquo;</a></p>
-		 </div>
-	</div>
-	<%
-	System.out.println(" books.jsp에서 불러온 이미지 파일명: " + book.getFilename());
 	}
+	if (rs!=null)
+		rs.close();
+	if (pstmt!=null)
+		pstmt.close();
+	if (conn!=null)
+		conn.close();
 	%>
-</div>
-<%@include file="footer.jsp" %>
-</div>
+	</div>
+	<%@ include file="footer.jsp" %>
+	</div>
 </body>
 </html>
