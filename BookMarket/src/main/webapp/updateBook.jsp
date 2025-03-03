@@ -121,13 +121,3 @@
 </div>
 </body>
 </html>
-		
-						<input type="text" name="name" id="name" class="form-control" value='<%=rs.getString("b_name")%>'>
-					</div>
-				</div>
-				</form>
-			</div>
-			</div>
-		}
-	%>
-</div></body></html>

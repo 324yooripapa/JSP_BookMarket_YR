@@ -5,9 +5,9 @@
 	Connection conn=null;
 	
 	try {
-		String url="jdbc:mysql://localhost:3306/BookMarketDB_YR";
+		String url="jdbc:mysql://localhost:3306/JSPBookDB_YR";
 		String user="root";
-		String password="1234";
+		String password="0000";
 		
 		Class.forName("com.mysql.jdbc.Driver");
 		conn=DriverManager.getConnection(url, user, password);
