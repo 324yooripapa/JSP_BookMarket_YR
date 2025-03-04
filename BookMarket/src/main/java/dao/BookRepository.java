@@ -1,6 +1,14 @@
 package dao;
 
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.DriverManager;
+
+
+import mvc.database.DBConnection;
 import dto.Book;
 
 public class BookRepository {
@@ -45,37 +53,100 @@ public class BookRepository {
 		listOfBooks.add(book2);
 		listOfBooks.add(book3);
 	}
-		public ArrayList<Book> getAllBooks() {
-			System.out.println("BookRepository에서 전체 도서 목록 반환 중");
-			
-			for (Book book : listOfBooks) {
-				System.out.println("저장된 도서 ID: " + book.getBookId()+", 이름: "+book.getName());
-			}
-			return listOfBooks;
-		}
+	
+	public ArrayList<Book> getAllBooks() {
+	    System.out.println("BookRepository에서 전체 도서 목록 반환 중");
+
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    ArrayList<Book> listOfBooks = new ArrayList<>();
+
+	    try {
+	        conn = DBConnection.getConnection();
+	        String sql = "SELECT * FROM book";
+	        pstmt = conn.prepareStatement(sql);
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            Book book = new Book();
+	            book.setBookId(rs.getString("b_id"));
+	            book.setName(rs.getString("b_name"));
+	            book.setUnitPrice(rs.getInt("b_unitPrice"));
+	            book.setAuthor(rs.getString("b_author"));
+	            book.setDescription(rs.getString("b_description"));
+	            book.setPublisher(rs.getString("b_publisher"));
+	            book.setCategory(rs.getString("b_category"));
+	            book.setUnitsInStock(rs.getInt("b_unitsInStock"));
+	            book.setReleaseDate(rs.getString("b_releaseDate"));
+	            book.setFilename(rs.getString("b_filename"));
+	            
+	            listOfBooks.add(book);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return listOfBooks;
+	}
+
 		
 		public Book getBookById(String id) {
-			System.out.println("BookRepository에서 검색 중: " +id);
-			
-			Book bookById=null;
-			
-		
-			for (Book book : listOfBooks) {
-				System.out.println("저장된 도서 ID: " + book.getBookId());
-				if (book != null && book.getBookId()!= null &&
-						book.getBookId().equals(id)) {
-						bookById = book;
-						break;
-					
-				}
-			}
-			
-			if (bookById == null) {
-				System.out.println("해당 ID의 도서를 찾을 수 없습니다." + id);
-			}
-			return bookById;
+		    System.out.println("BookRepository에서 검색 중: " + id);
+
+		    Connection conn = null;
+		    PreparedStatement pstmt = null;
+		    ResultSet rs = null;
+		    Book bookById = null;
+
+		    try {
+		        // DB 연결
+		        conn = DBConnection.getConnection(); // DB 연결을 위한 별도 클래스 사용 (DBConnection.java)
+		        
+		        String sql = "SELECT * FROM book WHERE b_id = ?";
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setString(1, id);
+		        rs = pstmt.executeQuery();
+
+		        if (rs.next()) {
+		            bookById = new Book();
+		            bookById.setBookId(rs.getString("b_id"));
+		            bookById.setName(rs.getString("b_name"));
+		            bookById.setUnitPrice(rs.getInt("b_unitPrice"));
+		            bookById.setAuthor(rs.getString("b_author"));
+		            bookById.setDescription(rs.getString("b_description"));
+		            bookById.setPublisher(rs.getString("b_publisher"));
+		            bookById.setCategory(rs.getString("b_category"));
+		            bookById.setUnitsInStock(rs.getInt("b_unitsInStock"));
+		            bookById.setReleaseDate(rs.getString("b_releaseDate"));
+		            bookById.setFilename(rs.getString("b_filename"));
+
+		            System.out.println("데이터베이스에서 찾은 도서: " + bookById.getName());
+		        } else {
+		            System.out.println("해당 ID의 도서를 찾을 수 없습니다: " + id);
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            if (rs != null) rs.close();
+		            if (pstmt != null) pstmt.close();
+		            if (conn != null) conn.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+		    return bookById;
 		}
-		
+
 		public void addBook(Book book) {
 			listOfBooks.add(book);
 		}

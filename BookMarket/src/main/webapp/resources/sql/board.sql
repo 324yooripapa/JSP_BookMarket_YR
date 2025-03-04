@@ -11,5 +11,5 @@ CREATE TABLE if not exists board (
 	PRIMARY KEY (num)
 	) default CHARSET=utf8;
 	
-	select * from member;
-	drop table member;
+	select * from board;
+	drop table board;

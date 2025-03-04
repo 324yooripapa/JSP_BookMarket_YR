@@ -16,6 +16,7 @@
 			<p class="col-md-8 fs-4">Book Updating</p>
 		</div>
 	</div>
+	
 	<%@ include file="dbconn.jsp" %>
 	<%
 		String id=request.getParameter("id");
@@ -39,12 +40,12 @@
 						<input type="text" name="id" id="id" class="form-control" value='<%=rs.getString("b_id") %>'>
 					</div>
 				</div>
-				<div class="mb-3 row">
-					<label class="col-sm-2">도서명</label>
-					<div class="col-sm-5">
-						<input type="text" name="name" id="name" class="form-control" value='<%=rs.getString("b_name")%>'>
+					<div class="mb-3 row">
+						<label class="col-sm-2">도서명</label>
+						<div class="col-sm-5">
+							<input type="text" name="name" id="name" class="form-control" value='<%=rs.getString("b_name")%>'>
+						</div>
 					</div>
-				</div>
 				<div class="mb-3 row">
 					<label class="col-sm-2">가격</label>
 					<div class="col-sm-5">
@@ -107,7 +108,7 @@
 			</div>
 		</div>
 	</form>
-	</div>
+</div>
 	<%
 		}
 		if (rs!=null)
@@ -118,6 +119,7 @@
 			conn.close();
 	%>
 	<jsp:include page="footer.jsp"/>
+</div>
 </div>
 </body>
 </html>
