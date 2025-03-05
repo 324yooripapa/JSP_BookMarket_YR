@@ -21,6 +21,16 @@ public class BookRepository {
 		return instance;
 	}
 	
+	private Connection getConnection() throws SQLException, ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		String url = "jdbc:mysql://localhost:3306/JSPBookDB_YR?serverTimezone=Asia/Seoul";
+		String user = "root";
+		String password = "0000";
+		
+		return DriverManager.getConnection(url, user, password);
+	}
+	
 	public BookRepository() {
 		Book book1 = new Book("ISBN1234","C# 프로그래밍", 27000);
 		book1.setAuthor("우재남");
@@ -63,7 +73,7 @@ public class BookRepository {
 	    ArrayList<Book> listOfBooks = new ArrayList<>();
 
 	    try {
-	        conn = DBConnection.getConnection();
+	        conn = getConnection();
 	        String sql = "SELECT * FROM book";
 	        pstmt = conn.prepareStatement(sql);
 	        rs = pstmt.executeQuery();
@@ -109,7 +119,7 @@ public class BookRepository {
 
 		    try {
 		        // DB 연결
-		        conn = DBConnection.getConnection(); // DB 연결을 위한 별도 클래스 사용 (DBConnection.java)
+		        conn = getConnection(); // DB 연결을 위한 별도 클래스 사용 (DBConnection.java)
 		        
 		        String sql = "SELECT * FROM book WHERE b_id = ?";
 		        pstmt = conn.prepareStatement(sql);

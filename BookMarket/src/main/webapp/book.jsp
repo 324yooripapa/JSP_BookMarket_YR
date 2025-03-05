@@ -29,11 +29,11 @@
 	</div>
 	
 	<%
-		String id = request.getParameter("id");
-		System.out.println("전달된 도서 id : [" + id + "]");
+		String b_id = request.getParameter("b_id");
+		System.out.println("전달된 도서 id : [" + b_id + "]");
 		
 
-		if (id == null || id.trim().isEmpty()){
+		if (b_id == null || b_id.trim().isEmpty()){
 
 			System.out.println("잘못된 접근입니다. 도서 ID가 없습니다.");
 			response.sendRedirect("books.jsp");
@@ -43,11 +43,11 @@
 			BookRepository dao=BookRepository.getInstance();
 			System.out.println("BookRepository 객체 생성됨");
 			
-			Book book=dao.getBookById(id);
+			Book book=dao.getBookById(b_id);
 			System.out.println("getBookById() 호출 완료, 결과: " + book);
 			
 			if (book==null){
-			System.out.println("해당 ID의 도서를 찾을 수 없습니다: " + id);
+			System.out.println("해당 ID의 도서를 찾을 수 없습니다: " + b_id);
 			}
 	%>
 	
@@ -66,7 +66,7 @@
 		<p><b>분류</b>: <%=book.getCategory() %>
 		<p><b>재고수</b>: <%=book.getUnitsInStock() %>
 		<h4><%=book.getUnitPrice() %>원</h4>
-		<p> <form name="addForm" action="/addCart.jsp?id=<%=book.getBookId()%>" method="post"><a href="#" class="btn btn-info" onclick="addToCart()">도서주문 &raquo;</a>
+		<p> <form name="addForm" action="/addCart.jsp?b_id=<%=book.getBookId()%>" method="post"><a href="#" class="btn btn-info" onclick="addToCart()">도서주문 &raquo;</a>
 		<a href="./cart.jsp" class="btn btn-warning">장바구니 &raquo;</a>
 		<a href="./books.jsp" class="btn btn-secondary"> 도서목록 &raquo;</a>
 		</form>
