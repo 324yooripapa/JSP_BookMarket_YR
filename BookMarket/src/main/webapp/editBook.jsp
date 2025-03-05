@@ -55,18 +55,11 @@
 				<p> <%=rs.getString("b_description").substring(0,60)%>....
 				<p><%=rs.getString("b_unitPrice")%>원
 				
-				<p><%
-						if (edit.equals("update")) {
-					%>
-					<a href="./updateBook.jsp?id=<%=rs.getString("b_id")%>" class="btn btn-success" role="button"> 수정 &raquo;></a>
-					
-					<%
-						} else if (edit.equals("delete")) {
-					%>
-					<a href="#" onclick="deleteConfirm('<%=rs.getString("b_id")%>')" class="btn btn-danger" role="button">삭제 &raquo;></a>
-					<%
-						}
-					%>	
+				<p>
+				    <a href="./updateBook.jsp?id=<%=rs.getString("b_id")%>" class="btn btn-success" role="button"> 수정 &raquo;</a>
+				    <a href="#" onclick="deleteConfirm('<%=rs.getString("b_id")%>')" class="btn btn-danger" role="button">삭제 &raquo;</a>
+				</p>
+				
 			</div>	
 		</div>			
 		<%
