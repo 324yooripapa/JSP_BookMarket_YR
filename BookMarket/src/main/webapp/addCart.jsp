@@ -3,15 +3,15 @@
 <%@ page import="dto.Book"%>
 <%@ page import="dao.BookRepository"%>
 <%
-	String id = request.getParameter("id");
-	if (id == null || id.trim().equals("")) {
+	String b_id = request.getParameter("id");
+	if (b_id == null || b_id.trim().equals("")) {
 		response.sendRedirect("books.jsp");
 		return;
 	}
 
 	BookRepository dao = BookRepository.getInstance();
 
-	Book product = dao.getBookById(id);
+	Book product = dao.getBookById(b_id);
 	if (product == null) {
 		response.sendRedirect("exceptionNoBookId.jsp");
 	}
@@ -20,7 +20,7 @@
 	Book goods = new Book();
 	for (int i = 0; i < goodsList.size(); i++) {
 		goods = goodsList.get(i);
-		if (goods.getBookId().equals(id)) { 			
+		if (goods.getBookId().equals(b_id)) { 			
 			break;
 		}
 	}
@@ -35,7 +35,7 @@
 	Book goodsQnt = new Book();
 	for (int i = 0; i < list.size(); i++) {
 		goodsQnt = list.get(i);
-		if (goodsQnt.getBookId().equals(id)) {
+		if (goodsQnt.getBookId().equals(b_id)) {
 			cnt++;
 			int orderQuantity = goodsQnt.getQuantity() + 1;
 			goodsQnt.setQuantity(orderQuantity);
@@ -47,5 +47,5 @@
 		list.add(goods);
 	}
 
-	response.sendRedirect("book.jsp?id=" + id);
+	response.sendRedirect("book.jsp?id=" + b_id);
 %>
